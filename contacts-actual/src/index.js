@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Contacts from './components/Contacts'
+import Search from './components/Search'
 
-const Index = () =>{
+const App = () =>{
 
 
-    const [contacts,setContacts] = useState([])
-    const [newName,setName]      = useState('');
-    const [newEmail,setEmail]    = useState('');
+    const [contacts,setContacts]     = useState([])
+    const [newName,setName]          = useState('');
+    const [newEmail,setEmail]        = useState('');
+    const [searchTerm,setSearchTerm] = useState('');
 
     const handleNameChange = event =>{
         event.preventDefault();
@@ -59,6 +61,22 @@ const Index = () =>{
 
 
 
+
+    const updateHandleSearch = () =>{
+     
+        const newContacts =  contacts.filter(el=>{
+            return el.name.toLowerCase().includes(searchTerm)
+        })
+        
+        setContacts(newContacts)
+    }
+
+    const handleSearch = (s) =>{
+        setSearchTerm(s)
+    }
+
+
+
     return(
         <div className="container text-center mb-2 p-4">
             <form>
@@ -73,15 +91,17 @@ const Index = () =>{
                 </div>
                 <button className="btn btn-primary m-2" type="Submit" onClick={handleSubmit} >Add contact</button>
             </form>
+            <Search handleSearch={handleSearch} />
+            <button className="btn-secondary btn" onClick={updateHandleSearch}>Search</button>
             <h1 className="display-4 text-center">
                 Contacts:
             </h1>
             {contacts.map(el=>{
-                return <Contacts name={el.name} email={el.email} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
+                return <Contacts name={el.name} email={el.email} handleDelete={handleDelete} handleUpdate={handleUpdate} />
             })}
 
         </div>
     )
 };
 
-ReactDOM.render(<Index/>,document.getElementById('root'))
+ReactDOM.render(<App/>,document.getElementById('root'))
