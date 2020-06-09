@@ -4,6 +4,11 @@ import Axios from 'axios';
 
 const App = () =>{
 
+
+
+   
+ 
+
     const [call,setCall] = useState({
         cToken:'',
         address:'',
@@ -11,8 +16,14 @@ const App = () =>{
     });
 
     const handleClick = async () =>{
-        const result = Axios('https://salty-temple-30960.herokuapp.com/cTokenBalance/cDai/0x04636b11322756aBa94d09c1deAFdfa04D4f8A74')
+        const result = await Axios.get('https://salty-temple-30960.herokuapp.com/cTokenBalance/cDai/0x04636b11322756aBa94d09c1deAFdfa04D4f8A74')
         console.log(result)
+        const fin = (result.data)
+       // console.log(fin)
+        console.log(fin['address'])
+
+        setCall({cToken:fin['cToken'],address:fin['address'],cTokenBalance:fin['cTokenBalance']})
+        console.log(call)
     }
 
     
