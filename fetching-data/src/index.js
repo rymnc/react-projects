@@ -12,7 +12,7 @@ const App = () =>{
         const getData = async () =>{
        
         const result = await axios('https://jsonplaceholder.typicode.com/posts')
-        setPosts(result.data)
+        setPosts(result.data.slice(0,4))
       }
         getData();
     },[]);
@@ -21,8 +21,8 @@ const App = () =>{
 
   
     return (
-        <div>
-            <h1 className="display-4 text-center">Fetch</h1>
+        <div className='bg-info'>
+            <h1 className="display-4 text-center text-white">Fetch</h1>
             {/* <h1 className="display-4 text-center">{posts[0].body}</h1> */}
             <Posts data={posts}/>
         </div>
