@@ -72,7 +72,7 @@ const App = () =>{
         <div className="container text-center">
             <form className='form-group mt-2' >
                 <input type="text" value={search} className="form-control" placeholder='Search' onChange={handleChange}/>
-                <button className="btn btn-success mt-4 mb-4" onClick={handleSearch}>Search</button>
+                <button className="btn btn-success mt-2 mb-2" onClick={handleSearch}>Search</button>
             </form>
         </div>
         <div className='container'>
