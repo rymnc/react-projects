@@ -27,7 +27,7 @@ const App = () =>{
 
         return images.map (el=>{
             return(
-            <div className="card m-3 ">
+            <div className="card m-3" key={images.indexOf(el)}>
                 <img src={el.src.medium} alt=""/>
                 <div className="card-body">
                     <p className="card-text text-center">{el.photographer}</p>
