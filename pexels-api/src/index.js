@@ -8,6 +8,7 @@ const App = () =>{
 
     const [images,setImage] = useState([])
     const [search,setSearch] = useState('')
+    const [finalSearch,setFinal] = useState('')
 
   
     useEffect(()=>{
@@ -24,10 +25,11 @@ const App = () =>{
 
 
     const renderImages = () =>{
-
+      
         return images.map (el=>{
             return(
             <div className="card m-3" key={images.indexOf(el)}>
+                
                 <img src={el.src.medium} alt=""/>
                 <div className="card-body">
                     <p className="card-text text-center">{el.photographer}</p>
@@ -46,6 +48,7 @@ const App = () =>{
     
     const handleSearch = async (event) =>{
      //   console.log(search)
+        setFinal(search)
         event.preventDefault();
         const url = 'https://api.pexels.com/v1/search'
         const ans = await Axios(url,{
@@ -74,6 +77,7 @@ const App = () =>{
                 <input type="text" value={search} className="form-control" placeholder='Search' onChange={handleChange}/>
                 <button className="btn btn-success mt-2 mb-2" onClick={handleSearch}>Search</button>
             </form>
+            <h3 className="display-4">Showing Results for: {finalSearch}</h3>
         </div>
         <div className='container'>
 
