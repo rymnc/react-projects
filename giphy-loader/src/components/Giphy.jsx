@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Loader from "./Loader";
-import Paginate from './Paginate'
+import Paginate from "./Paginate";
 
 const Giphy = () => {
   const [gifs, setGifs] = useState([]);
@@ -17,7 +17,7 @@ const Giphy = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexofFirstItem = indexOfLastItem - itemsPerPage;
 
-  const currentItems = gifs.slice(indexofFirstItem,indexOfLastItem)
+  const currentItems = gifs.slice(indexofFirstItem, indexOfLastItem);
 
   useEffect(() => {
     const getGif = async () => {
@@ -95,14 +95,9 @@ const Giphy = () => {
     setisloading(false);
   };
 
-  const pageSelected = (pageNumber) =>{
-
-
-    setCurrentPage(pageNumber)
-
-    
-
-  }
+  const pageSelected = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div className="m-2">
@@ -121,9 +116,14 @@ const Giphy = () => {
           Search
         </button>
       </form>
-      
-      <Paginate    currentPage={currentPage} itemsPerPage={itemsPerPage} totalItems={gifs.length} pageSelected={pageSelected} />
- 
+
+      <Paginate
+        currentPage={currentPage}
+        itemsPerPage={itemsPerPage}
+        totalItems={gifs.length}
+        pageSelected={pageSelected}
+      />
+
       <div className="container gifs">{renderGifs()}</div>
     </div>
   );
