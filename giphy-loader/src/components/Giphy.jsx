@@ -8,11 +8,10 @@ const Giphy = () => {
   const [isError, setIsError] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(25);
-  
 
-  const [searchChange,setSearchChange] = useState('')
+  const [searchChange, setSearchChange] = useState("");
 
-  const [finalSearch,setFinalSearch] = useState('')
+  const [finalSearch, setFinalSearch] = useState("");
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexofFirstItem = indexOfLastItem - itemsPerPage;
@@ -55,9 +54,6 @@ const Giphy = () => {
     }
   };
 
-
-
-
   const renderError = () => {
     if (isError) {
       return (
@@ -71,40 +67,47 @@ const Giphy = () => {
     }
   };
 
+  const handleChange = (event) => {
+    setSearchChange(event.target.value);
+    // console.log(event.target.value)
+  };
 
-  const handleChange = (event) =>{
-    setSearchChange(event.target.value)
-   // console.log(event.target.value)
-  }
-
-  const handleSearch = async (event) =>{
-    event.preventDefault()
-    setFinalSearch(searchChange)
+  const handleSearch = async (event) => {
+    event.preventDefault();
+    setFinalSearch(searchChange);
     //console.log(searchChange)
     setIsError(false);
     setisloading(true);
     try {
-      const result = await Axios(`https://api.giphy.com/v1/gifs/search?api_key=7H3wpKD0RodM5egPCgSs2bQZmqZPWIap&q=${searchChange}&limit=25&offset=0&rating=G&lang=en`)
-    //console.log(result.data.data)
-      setGifs(result.data.data)
-      
+      const result = await Axios(
+        `https://api.giphy.com/v1/gifs/search?api_key=7H3wpKD0RodM5egPCgSs2bQZmqZPWIap&q=${searchChange}&limit=25&offset=0&rating=G&lang=en`
+      );
+      //console.log(result.data.data)
+      setGifs(result.data.data);
     } catch (error) {
-
       setIsError(true);
-      console.error(error)
-      
+      console.error(error);
     }
-    
-    setisloading(false);
 
-  }
+    setisloading(false);
+  };
 
   return (
     <div className="m-2">
       {renderError()}
       <form action="" className="form-inline justify-content-center m-3">
-        <input type="text" name="" id="" className='form-control m-2' placeholder='Search' onChange={handleChange} value={searchChange} />
-        <button className="btn btn-outline-primary m-2" onClick={handleSearch}>Search</button>
+        <input
+          type="text"
+          name=""
+          id=""
+          className="form-control m-2"
+          placeholder="Search"
+          onChange={handleChange}
+          value={searchChange}
+        />
+        <button className="btn btn-outline-primary m-2" onClick={handleSearch}>
+          Search
+        </button>
       </form>
       <div className="container gifs">{renderGifs()}</div>
     </div>
