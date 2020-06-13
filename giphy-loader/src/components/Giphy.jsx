@@ -105,7 +105,7 @@ const Giphy = () => {
           onChange={handleChange}
           value={searchChange}
         />
-        <button className="btn btn-outline-primary m-2" onClick={handleSearch}>
+        <button className="btn btn-outline-info m-2" onClick={handleSearch}>
           Search
         </button>
       </form>
