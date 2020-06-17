@@ -7,11 +7,11 @@ import ReactDOM from 'react-dom'
 
 import { ExpenseContext } from "../context/expenseContext";
 import Axios from 'axios';
-import Entries from "./Entries";
+import {updateEntries} from "./Entries";
 
 const AddMoney = () => {
   const { setEntry } = useContext(ExpenseContext);
-
+ // const [rerender,setReRender] = useState(false)
   const [money, newMoney] = useState("");
   const [desc, newDesc] = useState("");
 
@@ -20,6 +20,9 @@ const AddMoney = () => {
     await Axios.post(`http://192.168.1.104:3000/push/${desc}/${money}`)
     //ReactDOM.forceUpdate(<App/>,document.getElementById('root'))
     window.location.reload()
+   // setReRender(!rerender)
+   // <Entries value={rerender}/>
+
     
 
   };
