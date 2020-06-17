@@ -35,8 +35,17 @@ export const ExpenseContextProvider = (props) =>{
 
         setEntries(newList)
     }
+
+    const setEntry = (desc,money) =>{
+   //     desc.replace(desc.charAt(0),desc[0].toUpperCase())
+        setEntries([...entries,{
+            id:entries.length+1,
+            description:desc,
+            amount:money
+        }])
+    }
     return(
-        <ExpenseContext.Provider value={{entries , deleteEntry}}>
+        <ExpenseContext.Provider value={{entries , deleteEntry, setEntry}}>
             {props.children}
         </ExpenseContext.Provider>
     )
