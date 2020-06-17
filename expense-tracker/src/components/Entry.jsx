@@ -1,11 +1,19 @@
 import React from "react";
 import { useContext } from "react";
 import { ExpenseContext } from "../context/expenseContext";
+import Axios from 'axios'
 const Entry = (props) => {
   // console.log('props:',props)
   let styler =
     "entry-item mt-2 list-group-item list-group-item-action list-group-item-";
-  const { deleteEntry } = useContext(ExpenseContext);
+  const deleteEntry = async (id) =>{
+
+    await Axios.post(`http://192.168.1.104:3000/delete/${id}`)
+
+    props.func()
+
+
+  }
 
   if (props.el.amount >= 1) {
     styler += "success";

@@ -8,6 +8,8 @@ import "./App.css";
 import { ExpenseContextProvider } from "./context/expenseContext";
 
 const App = () => {
+    // const [updates,setUpdates] = useState(0);
+
   return (
     <ExpenseContextProvider>
       <div className='mb-3'>

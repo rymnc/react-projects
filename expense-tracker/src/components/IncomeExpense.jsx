@@ -1,18 +1,28 @@
 import React from "react";
-import { useContext } from "react";
+import { useEffect,useState } from "react";
 import { ExpenseContext } from "../context/expenseContext";
-
+import Axios from 'axios'
 const IncomeExpense = () => {
-  const { entries } = useContext(ExpenseContext);
+ // const { entries } = useContext(ExpenseContext);
+ const [entries,getEntries] = useState([])
+    useEffect(()=>{
+        const getData = async () =>{
+            const fetcher = await Axios.get('http://192.168.1.104:3000/data');
+            console.log(fetcher)
+            getEntries(fetcher.data)
+
+        }
+        getData();
+    },[])
 
   let sumin = 0;
   let sumout = 0;
 
   entries.forEach((element) => {
     if (element.amount >= 1) {
-      sumin += element.amount;
+      sumin += parseInt(element.amount);
     } else {
-      sumout += Math.abs(element.amount);
+      sumout += Math.abs(parseInt((element.amount)));
     }
   });
 

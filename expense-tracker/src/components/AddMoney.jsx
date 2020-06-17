@@ -1,7 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { useContext } from "react";
+import App from '../App'
+import ReactDOM from 'react-dom'
+
+
 import { ExpenseContext } from "../context/expenseContext";
+import Axios from 'axios';
+import Entries from "./Entries";
 
 const AddMoney = () => {
   const { setEntry } = useContext(ExpenseContext);
@@ -9,9 +15,13 @@ const AddMoney = () => {
   const [money, newMoney] = useState("");
   const [desc, newDesc] = useState("");
 
-  const handleClick = (event) => {
+  const handleClick = async (event) => {
     event.preventDefault();
-    setEntry(desc, money);
+    await Axios.post(`http://192.168.1.104:3000/push/${desc}/${money}`)
+    //ReactDOM.forceUpdate(<App/>,document.getElementById('root'))
+    window.location.reload()
+    
+
   };
 
   const handleChange1 = (event) => {
