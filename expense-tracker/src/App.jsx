@@ -10,7 +10,7 @@ import { ExpenseContextProvider } from "./context/expenseContext";
 const App = () => {
   return (
     <ExpenseContextProvider>
-      <div>
+      <div className='mb-3'>
         <TotalBalance />
         <IncomeExpense />
         <AddMoney />
