@@ -9,19 +9,24 @@ import { ExpenseContext } from "../context/expenseContext";
 import Axios from 'axios';
 import {updateEntries} from "./Entries";
 
-const AddMoney = () => {
+const AddMoney = (props) => {
   const { setEntry } = useContext(ExpenseContext);
+
+
  // const [rerender,setReRender] = useState(false)
   const [money, newMoney] = useState("");
   const [desc, newDesc] = useState("");
 
   const handleClick = async (event) => {
     event.preventDefault();
-    await Axios.post(`http://192.168.1.104:3000/push/${desc}/${money}`)
+    await Axios.post(`http://192.168.1.105:3000/push/${desc}/${money}`)
     //ReactDOM.forceUpdate(<App/>,document.getElementById('root'))
-    window.location.reload()
+    //window.location.reload()
    // setReRender(!rerender)
    // <Entries value={rerender}/>
+   props.func();
+
+
 
     
 

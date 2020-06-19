@@ -8,7 +8,7 @@ const Entry = (props) => {
     "entry-item mt-2 list-group-item list-group-item-action list-group-item-";
   const deleteEntry = async (id) =>{
 
-    await Axios.post(`http://192.168.1.104:3000/delete/${id}`)
+    await Axios.post(`http://192.168.1.105:3000/delete/${id}`)
 
     props.func()
 

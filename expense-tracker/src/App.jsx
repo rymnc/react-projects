@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import TotalBalance from "./components/TotalBalance";
 import IncomeExpense from "./components/IncomeExpense";
 import AddMoney from "./components/AddMoney";
@@ -8,15 +8,19 @@ import "./App.css";
 import { ExpenseContextProvider } from "./context/expenseContext";
 
 const App = () => {
-    // const [updates,setUpdates] = useState(0);
+     const [updates,setUpdates] = useState(0);
+
+     const getUpdate = () =>{
+       setUpdates(updates+1)
+     }
 
   return (
     <ExpenseContextProvider>
       <div className='mb-3'>
         <TotalBalance />
         <IncomeExpense />
-        <AddMoney />
-        <Entries />
+        <AddMoney func={getUpdate} />
+        <Entries func={getUpdate}/>
       </div>
     </ExpenseContextProvider>
   );

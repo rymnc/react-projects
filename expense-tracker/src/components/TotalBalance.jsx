@@ -8,7 +8,7 @@ const TotalBalance = () => {
  const [entries,getEntries] = useState([])
     useEffect(()=>{
         const getData = async () =>{
-            const fetcher = await Axios.get('http://192.168.1.104:3000/data');
+            const fetcher = await Axios.get('http://192.168.1.105:3000/data');
             console.log(fetcher)
             getEntries(fetcher.data)
 
